@@ -3,7 +3,22 @@ h1
     text-align: center;
 }
 
-.cross
-{
-   border: 1rem solid blue;
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    justify-content: center;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:aqua;
+    font-size: 36px;
+    cursor: pointer;
 }
