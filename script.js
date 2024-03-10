@@ -69,6 +69,7 @@ function addSymbol(count,cell) {
     function winner()
     {
         const winnerdiv = document.querySelector('.winner');
+        winnerdiv.innerHTML="";
         winnerdiv.classList.add('winclass');
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
@@ -76,20 +77,21 @@ function addSymbol(count,cell) {
             [0, 4, 8], [2, 4, 6]             // Diagonals
         ];
         
-        const winnerFull=false;
+        let Full=false;
+     
         for (const combination of winningCombinations) {
             
             const [a, b, c] = combination;
             const cellA = gameBoard[a];
             const cellB = gameBoard[b];
             const cellC = gameBoard[c];
-          
+            let WinnerFound=false;           
     
-            if (cellA && cellB && cellC && cellA === cellB && cellA === cellC && cellB===cellC) {
-              
+            if (cellA && cellB && cellC && cellA === cellB && cellA === cellC && cellB===cellC && winnerdiv.innerHTML==="") {
                 winnerdiv.innerHTML += cellA + " is the winner";  
-                winnerFull=true;
-                disableBoard()
+                Full=true;
+                WinnerFound=true;
+
             }
 
            
@@ -101,13 +103,12 @@ function addSymbol(count,cell) {
     {
       if(gameBoard[i]===undefined)
       {
-          gameBoardFill=false;
-         
+          gameBoardFill=false;         
       }
 
     }
  
-    if(gameBoardFill && winnerFull===false)
+    if(gameBoardFill && Full===false)
     {
      winnerdiv.innerHTML+="It's a draw!";
     
@@ -115,10 +116,6 @@ function addSymbol(count,cell) {
    
 }
 
-function disableBoard()
-{
-
-}
 
 
 function clearBoard()
@@ -131,8 +128,7 @@ function clearBoard()
         cell.innerHTML="";
       
           });
-    
-    
+        
 }
 
 const btn = document.querySelector('.btn')
