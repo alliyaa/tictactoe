@@ -56,7 +56,8 @@ function addSymbol(count,cell) {
      
       else
       {
-        document.querySelector('.warning').innerHTML += "That spot is already filled by your opponent! Pick another spot";
+        document.querySelector('.warning').innerHTML += "That spot is already filled! Pick another spot";
+        document.querySelector('.warning').classList.add('winclass');
         counter.decrement();
         counter.decrement();
       }  
@@ -68,6 +69,7 @@ function addSymbol(count,cell) {
     function winner()
     {
         const winnerdiv = document.querySelector('.winner');
+        winnerdiv.classList.add('winclass');
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
@@ -87,6 +89,7 @@ function addSymbol(count,cell) {
               
                 winnerdiv.innerHTML += cellA + " is the winner";  
                 winnerFull=true;
+                disableBoard()
             }
 
            
@@ -112,6 +115,10 @@ function addSymbol(count,cell) {
    
 }
 
+function disableBoard()
+{
+
+}
 
 
 function clearBoard()
