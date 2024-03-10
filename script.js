@@ -1,16 +1,12 @@
+const gameBoard=[];
 
-const gameBoard = []
-
+const cellClick = document.querySelectorAll('.cell');
 
 function createCounter() {
 let count = 0;
-const cellClick = document.querySelectorAll('.cell');
-
 cellClick.forEach((cell) => {
 
-    
     cell.addEventListener('click', () => {
-    
         addSymbol(count,cell);
 
     });
@@ -31,16 +27,7 @@ cellClick.forEach((cell) => {
       }
   };
 }
-
-// Create a counter instance
 const counter = createCounter();
-
-
-
-
-
-// counter.reset();
-// console.log(counter.getCount()); 
 
 
 function addSymbol(count,cell) {
@@ -72,28 +59,78 @@ function addSymbol(count,cell) {
         document.querySelector('.warning').innerHTML += "That spot is already filled by your opponent! Pick another spot";
         counter.decrement();
         counter.decrement();
-      }
-     
-    
+      }  
 
-    
+    winner()
     }
 
 
     function winner()
     {
+        const winnerdiv = document.querySelector('.winner');
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+        
+        const winnerFull=false;
+        for (const combination of winningCombinations) {
+            
+            const [a, b, c] = combination;
+            const cellA = gameBoard[a];
+            const cellB = gameBoard[b];
+            const cellC = gameBoard[c];
+          
+    
+            if (cellA && cellB && cellC && cellA === cellB && cellA === cellC && cellB===cellC) {
+              
+                winnerdiv.innerHTML += cellA + " is the winner";  
+                winnerFull=true;
+            }
 
+           
+            }
+
+       
+    let gameBoardFill=true;
+    for(let i=0; i<9; i++)
+    {
+      if(gameBoard[i]===undefined)
+      {
+          gameBoardFill=false;
+         
+      }
 
     }
+ 
+    if(gameBoardFill && winnerFull===false)
+    {
+     winnerdiv.innerHTML+="It's a draw!";
+    
+    }
+   
+}
 
 
 
+function clearBoard()
+{
+    counter.increment();
+    counter.increment();
+    document.querySelector('.winner').innerHTML="";
+    gameBoard.fill(undefined);
+    cellClick.forEach((cell) => {
+        cell.innerHTML="";
+      
+          });
+    
+    
+}
 
-// function createBoard()
-// {
-// for(let i =1; i<size; i++)
-// {
-//     con
-// }
+const btn = document.querySelector('.btn')
+btn.addEventListener('click', () => {
+    clearBoard();
+});
 
-// }
+
