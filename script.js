@@ -13,16 +13,16 @@ cellClick.forEach((cell) => {
 });
 
   return {
-      increment: function() {
+      increment() {
           count++;
       },
-      decrement: function() {
+      decrement() {
           count--;
       },
-      getCount: function() {
+      getCount() {
           return count;
       },
-      reset: function() {
+      reset() {
           count = 0;
       }
   };
