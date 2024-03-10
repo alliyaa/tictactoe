@@ -58,8 +58,7 @@ function addSymbol(count,cell) {
       {
         document.querySelector('.warning').innerHTML += "That spot is already filled! Pick another spot";
         document.querySelector('.warning').classList.add('winclass');
-        counter.decrement();
-        counter.decrement();
+     
       }  
 
     winner()
