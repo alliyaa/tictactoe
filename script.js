@@ -1,6 +1,6 @@
 const gameBoard=[];
-
 const cellClick = document.querySelectorAll('.cell');
+
 
 function createCounter() {
 let count = 0;
@@ -52,8 +52,7 @@ function addSymbol(count,cell) {
             gameBoard[index]="O";
         }
       }
-       
-     
+         
       else
       {
         document.querySelector('.warning').innerHTML += "That spot is already filled! Pick another spot";
@@ -67,6 +66,7 @@ function addSymbol(count,cell) {
 
     function winner()
     {
+
         const winnerdiv = document.querySelector('.winner');
         winnerdiv.innerHTML="";
         winnerdiv.classList.add('winclass');
@@ -77,22 +77,20 @@ function addSymbol(count,cell) {
         ];
         
         let Full=false;
-     
+      
         for (const combination of winningCombinations) {
             
             const [a, b, c] = combination;
             const cellA = gameBoard[a];
             const cellB = gameBoard[b];
             const cellC = gameBoard[c];
-            let WinnerFound=false;           
-    
+          
             if (cellA && cellB && cellC && cellA === cellB && cellA === cellC && cellB===cellC && winnerdiv.innerHTML==="") {
+                console.log(winnerdiv.innerHTML);
                 winnerdiv.innerHTML += cellA + " is the winner";  
                 Full=true;
-                WinnerFound=true;
-
+                console.log(winnerdiv.innerHTML);
             }
-
            
             }
 
